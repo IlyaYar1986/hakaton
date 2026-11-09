@@ -1,6 +1,6 @@
 (() => {
   const api=window.BOOKING_API, schedule=document.querySelector('#schedule'), message=document.querySelector('#message'), dialog=document.querySelector('#booking'), form=document.querySelector('#form');
-  const key=id=>'gospromt_booking_'+id;
+  const key=id=>'gospromt_booking_1r5-hsnzBsU0tZzM8JGgqcF2dYw4hkSx2_hwACWsTZjs_'+id;
   const teams=[['4','Тримануло','Актаныш'],['14','БИТ — Буинская интеллектуальная территория','Буинск'],['15','Услон-Цифра','Верхний Услон'],['16','Горцы','Высокая Гора'],['19','ZaInet.ru','Заинск'],['20','Зеленодольск — инвестиции и развитие','Зеленодольск'],['30','Импульс будущего','Казань'],['32','Нижнекамский Промт','Нижнекамск'],['47','Симбиоз Интеллектов','Кабинет Министров РТ'],['52','Агент перемен','Архивы РТ'],['53','Госкомитет по биоресурсам','Биоресурсы'],['55','Тарифы Татарстана','Госкомитет по тарифам'],['64','Лесной дозор','Лесное хозяйство'],['76','Министерство экономики Республики Татарстан','Минэкономики'],['77','Агенты правосудия','Минюст']];
   const select=document.querySelector('#teams');for(const [id,name,org] of teams){const option=document.createElement('option');option.value=id;option.textContent=`№ ${id} · ${name} — ${org}`;select.append(option)}
   let selected=null, loading=false;
