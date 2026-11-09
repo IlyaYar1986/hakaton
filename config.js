@@ -1,2 +1,1 @@
-// После публикации Apps Script вставьте сюда URL веб-приложения /exec.
-window.BOOKING_API = '';
+window.BOOKING_API = 'https://script.google.com/macros/s/AKfycbyikJPA-KjUpTyWm3B_AgzfSDUkdMHRLloIATqfR_rODDpzAlsn8AtovoexNQci3Au9/exec';
