@@ -6,7 +6,7 @@ function result_(value) {
   return ContentService.createTextOutput(JSON.stringify(value)).setMimeType(ContentService.MimeType.JSON);
 }
 function doGet() {
-  try { return result_({ok:true, slots:readSlots_().map(s=>({id:s.id,week:s.week,day:s.day,time:s.time,occupied:s.occupied}))}); }
+  try { return result_({ok:true, slots:readSlots_().map(s=>({id:s.id,week:s.week,day:s.day,time:s.time,occupied:s.occupied,confirmed:s.status==='Подтверждён'}))}); }
   catch (error) { return result_({ok:false, error:'Не удалось загрузить расписание.'}); }
 }
 function doPost(e) {
@@ -61,6 +61,7 @@ function change_(data) {
   }
   let saved; try { saved=JSON.parse(previous); } catch (_) { saved=null; }
   if (!slot.occupied || !saved || saved.hash!==digest_(data.token) || saved.week!==slot.week || saved.day!==slot.day || saved.time!==slot.time || saved.team!==slot.team || saved.name!==slot.name || saved.comment!==slot.comment) return {ok:false,error:'Запись изменилась или принадлежит другому браузеру. Обратитесь к эксперту.'};
+  if (slot.status) return {ok:false,error:'Запись уже подтверждена, для изменения обратитесь к трекеру в чате.'};
   cell.clearContent(); SpreadsheetApp.flush(); props.deleteProperty(key);
   return {ok:true};
 }
