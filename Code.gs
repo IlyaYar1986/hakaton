@@ -55,12 +55,12 @@ function change_(data) {
     // Предотвращаем внедрение формул через поля формы.
     const safe=s=>/^[=+\-@]/.test(s)?"'"+s:s;
     props.setProperty(key,JSON.stringify({hash:digest_(data.token),week:slot.week,day:slot.day,time:slot.time,team:team,name:name,comment:comment}));
-    try { cell.setValues([[team,safe(name),'Подтверждён',safe(comment)]]); SpreadsheetApp.flush(); }
+    try { cell.setValues([[team,safe(name),'',safe(comment)]]); SpreadsheetApp.flush(); }
     catch(error) { props.deleteProperty(key); throw error; }
     return {ok:true};
   }
   let saved; try { saved=JSON.parse(previous); } catch (_) { saved=null; }
-  if (!slot.occupied || !saved || saved.hash!==digest_(data.token) || saved.week!==slot.week || saved.day!==slot.day || saved.time!==slot.time || saved.team!==slot.team || saved.name!==slot.name || saved.comment!==slot.comment || slot.status!=='Подтверждён') return {ok:false,error:'Запись изменилась или принадлежит другому браузеру. Обратитесь к эксперту.'};
+  if (!slot.occupied || !saved || saved.hash!==digest_(data.token) || saved.week!==slot.week || saved.day!==slot.day || saved.time!==slot.time || saved.team!==slot.team || saved.name!==slot.name || saved.comment!==slot.comment) return {ok:false,error:'Запись изменилась или принадлежит другому браузеру. Обратитесь к эксперту.'};
   cell.clearContent(); SpreadsheetApp.flush(); props.deleteProperty(key);
   return {ok:true};
 }
