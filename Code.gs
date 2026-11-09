@@ -1,5 +1,5 @@
 // Развернуть как веб-приложение от имени владельца таблицы.
-const SPREADSHEET_ID = '1sRLgcb3-9KR9riotAnY6ZbBId1G5UfCPD1GZjYherJw';
+const SPREADSHEET_ID = '1r5-hsnzBsU0tZzM8JGgqcF2dYw4hkSx2_hwACWsTZjs';
 const SHEET_NAME = 'Илья Чурилов';
 
 function result_(value) {
@@ -46,7 +46,7 @@ function change_(data) {
   const slot=readSlots_().find(s=>s.id===data.id);
   if (!slot) return {ok:false,error:'Слот больше недоступен.'};
   const props=PropertiesService.getScriptProperties();
-  const key='slot_'+slot.id, previous=props.getProperty(key);
+  const key='slot_'+SPREADSHEET_ID+'_'+slot.id, previous=props.getProperty(key);
   const cell=sheet_().getRange(slot.id,3,1,4);
   if (data.action==='book') {
     if (slot.occupied) return {ok:false,error:'Этот слот уже занят. Обновите расписание.'};
